@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vera Dureke — Data Scientist & Mathematician</title>
+  <meta name="description" content="Vera Dureke — Data Science and Mathematics student at Indiana University East. Portfolio of machine learning, data visualization, and analytics projects." />
+  <meta name="author" content="Vera Dureke" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Vera Dureke — Data Scientist & Mathematician" />
+  <meta property="og:description" content="Portfolio of machine learning, data visualization, and analytics projects." />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/102716949?v=4" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veradureke.github.io/" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c5cff'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='system-ui, sans-serif' font-size='32' font-weight='700' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Theme ---------- */
+    :root {
+      --bg: #fafaf7;
+      --bg-elev: #ffffff;
+      --text: #16161a;
+      --text-muted: #5b5b66;
+      --border: #e8e6df;
+      --accent: #7c5cff;
+      --accent-2: #ff6b9d;
+      --accent-3: #18c29c;
+      --shadow: 0 1px 2px rgba(20, 20, 30, 0.04), 0 8px 24px rgba(20, 20, 30, 0.06);
+      --grid: rgba(20, 20, 30, 0.06);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0e0f14;
+      --bg-elev: #161821;
+      --text: #f4f4f7;
+      --text-muted: #a1a1b0;
+      --border: #262834;
+      --accent: #a48bff;
+      --accent-2: #ff7eb0;
+      --accent-3: #4be0bd;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.45);
+      --grid: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --bg: #0e0f14;
+        --bg-elev: #161821;
+        --text: #f4f4f7;
+        --text-muted: #a1a1b0;
+        --border: #262834;
+        --accent: #a48bff;
+        --accent-2: #ff7eb0;
+        --accent-3: #4be0bd;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.45);
+        --grid: rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 48px 48px;
+      background-position: -1px -1px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .theme-toggle:hover { background: var(--bg-elev); border-color: var(--accent); }
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) .theme-toggle .sun { display: none; }
+      :root:not([data-theme]) .theme-toggle .moon { display: block; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a:not(.theme-toggle) { display: none; }
+    }
+
+    /* ---------- Hero ---------- */
+    header.hero {
+      padding: 96px 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 760px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      header.hero { padding: 56px 0 48px; }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-elev);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-3) 18%, transparent);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5.6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin: 20px 0 18px;
+    }
+    h1 .accent {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 0 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      cursor: pointer;
+    }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .btn-primary:hover { box-shadow: var(--shadow); }
+    .btn-ghost {
+      background: var(--bg-elev);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); }
+    .btn svg { width: 16px; height: 16px; }
+
+    /* avatar card */
+    .avatar-card {
+      position: relative;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--bg-elev);
+      box-shadow: var(--shadow);
+      transform: rotate(1.5deg);
+    }
+    .avatar-card img {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .avatar-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+      z-index: -1;
+      filter: blur(28px);
+      opacity: 0.35;
+    }
+    .avatar-tag {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+
+    /* ---------- Section ---------- */
+    section {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      letter-spacing: -0.02em;
+      margin: 0;
+      font-weight: 700;
+    }
+    h2 .num {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75em;
+      font-weight: 600;
+      margin-right: 12px;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-grid p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+    .about-grid p strong { color: var(--text); font-weight: 600; }
+
+    .stat-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--bg-elev);
+    }
+    .stat-card h3 {
+      margin: 0 0 14px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row span:first-child { color: var(--text-muted); }
+    .stat-row span:last-child { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+    /* ---------- Projects ---------- */
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .filter-pill {
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .filter-pill:hover { color: var(--text); border-color: var(--text-muted); }
+    .filter-pill.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .project-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--bg-elev);
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--accent));
+      opacity: 0.7;
+      transition: opacity 0.18s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--card-accent, var(--accent));
+      box-shadow: var(--shadow);
+      text-decoration: none;
+    }
+    .project-card:hover::before { opacity: 1; }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .card-arrow {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+    .project-card:hover .card-arrow {
+      color: var(--card-accent, var(--accent));
+      transform: translate(2px, -2px);
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0 0 16px;
+      flex-grow: 1;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .lang-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--card-accent, var(--accent)) 14%, transparent);
+      color: var(--card-accent, var(--accent));
+      font-weight: 600;
+      font-size: 11px;
+    }
+    .lang-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--card-accent, var(--accent));
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--bg-elev);
+      color: var(--text);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .contact-card:hover { transform: translateY(-2px); border-color: var(--accent); text-decoration: none; }
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; }
+    .contact-text { display: flex; flex-direction: column; }
+    .contact-text strong { font-weight: 600; font-size: 14px; }
+    .contact-text small { color: var(--text-muted); font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 32px 0 56px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+    }
+    footer p { margin: 4px 0; }
+    footer .built-with {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; }
+    .reveal.in-view { animation: fadeUp 0.6s ease forwards; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">V</span>
+      <span>Vera Dureke</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<a id="top"></a>
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Open to internships & collaborations</span>
+      <h1>Hi, I'm Vera — I work with <span class="accent">data, math, and machine learning.</span></h1>
+      <p class="lead">
+        Data Science and Mathematics student at Indiana University East, building projects in machine learning, data visualization, and applied analytics. Currently at CDW in Chicago.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">
+          See projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/veradureke" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.21 11.41c.6.11.82-.26.82-.58v-2.16c-3.34.72-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="avatar-card">
+      <img src="https://avatars.githubusercontent.com/u/102716949?v=4" alt="Vera Dureke" />
+      <span class="avatar-tag">~/vera —— chicago, il</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <h2><span class="num">01.</span>About</h2>
+      <span class="section-sub">A bit about me</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm a <strong>Data Science and Mathematics</strong> major at Indiana University East,
+          using GitHub as both a portfolio and a journal of what I'm learning. My work spans
+          machine learning, data visualization, computational notebooks, and the occasional web app.
+        </p>
+        <p>
+          Lately I've been focused on equitable AI — building dermatology models that work fairly
+          across skin tones — and on tools that turn instructional text into structured assessment
+          questions. Outside of that I'm at <strong>CDW</strong> and always looking for the next
+          interesting dataset.
+        </p>
+        <p>
+          Pull up a project below, or reach out and tell me what you're working on.
+        </p>
+      </div>
+      <div class="stat-card">
+        <h3>Currently</h3>
+        <div class="stat-row"><span>Studying</span><span>DS + Math @ IUE</span></div>
+        <div class="stat-row"><span>Working</span><span>CDW</span></div>
+        <div class="stat-row"><span>Based in</span><span>Chicago, IL</span></div>
+        <div class="stat-row"><span>Repos</span><span>15 public</span></div>
+        <div class="stat-row"><span>Stack</span><span>Python · D3 · Jupyter</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <h2><span class="num">02.</span>Projects</h2>
+      <span class="section-sub">15 repos · live from <a href="https://github.com/veradureke" target="_blank" rel="noopener">github.com/veradureke</a></span>
+    </div>
+
+    <div class="filter-row" id="filterRow">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="ml">Machine Learning</button>
+      <button class="filter-pill" data-filter="viz">Data Viz</button>
+      <button class="filter-pill" data-filter="analysis">Analysis</button>
+      <button class="filter-pill" data-filter="web">Web</button>
+    </div>
+
+    <div class="project-grid" id="projectGrid">
+      <!-- Featured / Recent -->
+      <a class="project-card" data-tags="viz" style="--card-accent:#ff6b9d" href="https://github.com/veradureke/imdb-d3-final" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">IMDB · D3 Visualization</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">An interactive D3.js exploration of IMDB film data — built as a final project to visualize trends across genres, decades, and ratings.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>HTML · D3</span>
+          <span>May 2026</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="ml web" style="--card-accent:#7c5cff" href="https://github.com/veradureke/Question-Generator-" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">NGSS Question Generator</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">A workflow that automates structured skills and assessment-question generation from NGSS-aligned instructional text.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>HTML · NLP</span>
+          <span>Mar 2026</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="web" style="--card-accent:#18c29c" href="https://github.com/veradureke/Waggle-" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Waggle</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">An in-progress side project — code and docs available on the repo.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Project</span>
+          <span>Mar 2026</span>
+        </div>
+      </a>
+
+      <!-- Machine Learning / AI -->
+      <a class="project-card" data-tags="ml" style="--card-accent:#ff8a3d" href="https://github.com/veradureke/Equitable-AI-for-Dermatology-Team-Azealic-Acid" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Equitable AI for Dermatology</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Team Azealic Acid: building dermatology classification models that perform equitably across skin tones.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Jupyter</span>
+          <span>Aug 2025</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="ml analysis" style="--card-accent:#7c5cff" href="https://github.com/veradureke/AI4ALL-Group-3D" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">AI4ALL · Group 3D</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Team capstone from the AI4ALL program — exploratory ML work in Jupyter notebooks.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Jupyter</span>
+          <span>Jul 2025</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="ml web" style="--card-accent:#18c29c" href="https://github.com/veradureke/Iris_Deployment" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Iris ML · Streamlit Deploy</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">An end-to-end machine learning model packaged for deployment on Streamlit — from training notebook to interactive web app.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Python · Streamlit</span>
+          <span>Dec 2024</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="ml" style="--card-accent:#ff6b9d" href="https://github.com/veradureke/Technology-Product-Categorization" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Tech Product Categorization</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Classification work on technology product data — building features and comparing model performance in Jupyter.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Jupyter</span>
+          <span>Dec 2024</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="ml" style="--card-accent:#a48bff" href="https://github.com/veradureke/Machine-Learning-Foundations-Portfolio" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">ML Foundations Portfolio</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Every assignment from my Machine Learning Foundations coursework, organized by topic — from regression through neural nets.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Jupyter</span>
+          <span>Aug 2024</span>
+        </div>
+      </a>
+
+      <!-- Analysis -->
+      <a class="project-card" data-tags="analysis" style="--card-accent:#4be0bd" href="https://github.com/veradureke/Cornell" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Cornell</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Notebook work from a Cornell-based program — applied data analysis exercises.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Jupyter</span>
+          <span>Oct 2025</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="analysis viz" style="--card-accent:#18c29c" href="https://github.com/veradureke/Deforestation-Exploration" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Deforestation Exploration</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">A data-driven look at global deforestation patterns — exploratory analysis and visual storytelling.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Analysis</span>
+          <span>Mar 2025</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="analysis" style="--card-accent:#7c5cff" href="https://github.com/veradureke/spacelab-summer2023" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">SpaceLab · Summer 2023</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Research notebooks from a summer SpaceLab program — early hands-on data work.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>Jupyter</span>
+          <span>Aug 2023</span>
+        </div>
+      </a>
+
+      <!-- Web / Data -->
+      <a class="project-card" data-tags="web" style="--card-accent:#ff6b9d" href="https://github.com/veradureke/Udiddit" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Udiddit</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">A SQL data-modeling project — refactoring a messy schema into a clean relational design.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>SQL</span>
+          <span>Sep 2022</span>
+        </div>
+      </a>
+
+      <a class="project-card" data-tags="web" style="--card-accent:#a48bff" href="https://github.com/veradureke/Seven-Sages-Brewing-" target="_blank" rel="noopener">
+        <div class="card-head">
+          <h3 class="card-title">Seven Sages Brewing</h3>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+        <p class="card-desc">Database and analytics project for a brewing company case study — schema design and reporting.</p>
+        <div class="card-meta">
+          <span class="lang-pill"><span class="lang-dot"></span>SQL</span>
+          <span>Sep 2022</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2><span class="num">03.</span>Get in touch</h2>
+      <span class="section-sub">Best places to find me</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:veradureke@gmail.com">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </span>
+        <span class="contact-text">
+          <strong>Email</strong>
+          <small>veradureke@gmail.com</small>
+        </span>
+      </a>
+      <a class="contact-card" href="https://github.com/veradureke" target="_blank" rel="noopener">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.21 11.41c.6.11.82-.26.82-.58v-2.16c-3.34.72-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </span>
+        <span class="contact-text">
+          <strong>GitHub</strong>
+          <small>@veradureke</small>
+        </span>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/veradureke/" target="_blank" rel="noopener">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.13 2.06 2.06 0 010 4.13zm-1.78 13.02h3.55V9H3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </span>
+        <span class="contact-text">
+          <strong>LinkedIn</strong>
+          <small>in/veradureke</small>
+        </span>
+      </a>
+      <a class="contact-card" href="https://twitter.com/VeraDureke" target="_blank" rel="noopener">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </span>
+        <span class="contact-text">
+          <strong>X / Twitter</strong>
+          <small>@VeraDureke</small>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> Vera Dureke. Built with care in Chicago.</p>
+    <p class="built-with">Hand-coded HTML · hosted on GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle with localStorage memory
+  (function () {
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const current = root.getAttribute('data-theme')
+        || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
+
+  // Project filter
+  (function () {
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.project-card');
+    pills.forEach(p => p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      const f = p.dataset.filter;
+      cards.forEach(c => {
+        const tags = (c.dataset.tags || '').split(' ');
+        c.style.display = (f === 'all' || tags.includes(f)) ? '' : 'none';
+      });
+    }));
+  })();
+
+  // Reveal on scroll
+  (function () {
+    const els = document.querySelectorAll('.project-card, .stat-card, .contact-card');
+    els.forEach(el => el.classList.add('reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in-view'), i * 30);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
